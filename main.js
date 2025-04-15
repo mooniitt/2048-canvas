@@ -121,8 +121,13 @@ function drawTile(r, c, value, scale = 1, mergeAnim = false) {
   ctx.fillStyle = color.bg;
   ctx.fill();
   if (value) {
+    // 根据数字长度动态调整字体大小
+    let fontSize = 32;
+    if (value >= 1024) fontSize = 22;
+    else if (value >= 128) fontSize = 26;
+    else if (value >= 16) fontSize = 28;
     ctx.fillStyle = color.color;
-    ctx.font = value > 512 ? "26px Arial" : "32px Arial";
+    ctx.font = fontSize + "px Arial";
     ctx.fillText(value, 0, 0);
   }
   ctx.restore();
